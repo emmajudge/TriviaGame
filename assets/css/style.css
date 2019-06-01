@@ -1,3 +1,8 @@
 body {
     background: url("../images/dictionary.jpg");
 }
+
+#showPossibleAnswers
+{
+    background-color: whitesmoke
+}
