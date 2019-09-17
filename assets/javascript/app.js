@@ -1,3 +1,5 @@
+// add more questions and update answers (are animations necessary?)
+// this code was copied from a class activity.. check week/number 
 var questionAnswers = [
     {
         question: "who is MJ?",
@@ -14,7 +16,7 @@ var questionAnswers = [
 
 ]
 
-
+// initialize variables so everything has a starting point/value of zero
 var correctAnswers = 0;
 var inCorrectAnswers = 0;
 var unAnswers = 0;
@@ -64,6 +66,7 @@ function showTrivia() {
 
     intervalid= setInterval(countDown,1000);
 
+// create countdown function to display time remaining or lock time and display results once time has has elapsed (display results function that is called here is defined below -- daisy chain style)
 function countDown()
 {
     $("#timer").html("Timer: "+timer)
@@ -76,6 +79,7 @@ function countDown()
     
 }
 
+// define function that, once the time has elapsed, will 1) hide the timer, 2) hide the possible answers (so user can no longer select answers after time is up), and 3) show the user's overall results number of right/wrong responses and unanswered questions --> with # unanswered as a formula of total questions minus number correct and incorrect (so total right+wrong+unanswered equals the total number of questions)
     function displayResults(){
 
           $("#timer").hide();
