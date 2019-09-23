@@ -25,6 +25,9 @@ var index = 0;
 var timer=10;
 var intervalid;
 
+var resetButton=document.createElement("button");resetButton.innerHTML="Play Again!"
+resetButton.addEventListener("click", playAgain());
+
 function showTrivia() {
 
     for (index = 0; index < questionAnswers.length; index++) {
@@ -83,7 +86,7 @@ function countDown()
     function displayResults(){
 
           $("#timer").hide();
-          $("#showPossibleAnswers").hide()
+          $("#showPossibleAnswers").hide();
           $("#results").show();
 
           $("#results").append("correct answer:" + correctAnswers +"<br>")
@@ -91,5 +94,11 @@ function countDown()
 
           unAnswers=questionAnswers.length -correctAnswers -inCorrectAnswers
           $("#results").append("Unanswer:" + unAnswers +"<br>")
-
+          $("#results").append(resetButton) 
     }
+
+function playAgain(){
+    $("#results").hide();
+    showTrivia();
+    intervalid;
+}
