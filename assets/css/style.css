@@ -1,8 +1,11 @@
 body {
-    background: url("../images/dictionary.jpg");
+    background: url("../images/center-leaf.jpg");
 }
 
-#showPossibleAnswers
-{
+#showPossibleAnswers{
+    background-color: whitesmoke
+}
+
+#results{
     background-color: whitesmoke
 }
