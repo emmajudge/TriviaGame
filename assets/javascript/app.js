@@ -2,17 +2,35 @@
 // this code was copied from a class activity.. check week/number 
 var questionAnswers = [
     {
-        question: "1. Who is MJ?",
-        answers: ["He is a footbal player", "He is a rock star", "He is the GOAT", "He is a pilot"],
-        rightAnswer: "He is the GOAT",
-        animate: "https://media3.giphy.com/media/pYvP6Bf0Uhtm0/200w.webp?cid=790b76115ce7298e785a396d7364905b&rid=200w.webp"
+        question: "1. Furfur",
+        answers: ["A type of mustache very popular in the Victorian era", "A Siberian squirrel with five stripes down it's back", "Flakes of dandruff", "An edible fruit found in South America"],
+        rightAnswer: "Flakes of dandruff",
     },
     {
-        question: "2. Who won the world series in 2016?",
-        answers: ["Blackhawks", "Cubs", "Bears", "White Soxs"],
-        rightAnswer: "Cubs",
-        animate: "https://giphy.com/gifs/mlb-dance-cubs-vol-7HsmAvlq6lDlm"
-    }
+        question: "2. Meldrop",
+        answers: ["Dew found just after sunrise", "A drop of mucus at the nose", "Hallucinogenic mushrooms used in Bolivian tribal rituals", "An acrobatic wrestling move"],
+        rightAnswer: "A drop of mucus at the nose",
+    },
+    {
+        question: "3. Octothorpe",
+        answers: ["The # symbol", "A group of octuplets with unusually high intelligence", "A misanthropic octopus", "An eight-legged crab"],
+        rightAnswer: "The # symbol",
+    },
+    {
+        question: "4. Augend",
+        answers: ["To gentrify an area thereby augmenting a neighborhood's demographics", "Brand of German beer", "The anthropological study of eugenics", "the first quantity in an addition of two things"],
+        rightAnswer: "the first quantity in an addition of two things",
+    },
+    {
+        question: "5. Agelast",
+        answers: ["a person who never laughs", "a sword made of glass", "an heirloom gelatin mold", "a locking mechanism impenetrable to break-in"],
+        rightAnswer: "a person who never laughs",
+    },
+    {
+        question: "6. Peristeronic",
+        answers: ["fossils from the paleolithic age", "aversion to exposing one's toes", "of or relating to pigeons", "mental health disorder characterized by the fear of pears"],
+        rightAnswer: "of or relating to pigeons",
+    },
 
 ]
 
@@ -22,13 +40,13 @@ var inCorrectAnswers = 0;
 var unAnswers = 0;
 var index = 0;
 
-var timer = 15;
+var timer = 60;
 var intervalid;
 
 function showTrivia() {
 
     for (index = 0; index < questionAnswers.length; index++) {
-        $("#showPossibleAnswers").append(questionAnswers[index].question + "<br>");
+        $("#showPossibleAnswers").append("<h2>"+questionAnswers[index].question + "<br>");
         for (var i = 0; i < questionAnswers[index].answers.length; i++) {
             $("#showPossibleAnswers").append("<input type='radio' name='question-"+index+"' value='"+questionAnswers[index].answers[i]+"'>"+questionAnswers[index].answers[i])
         }
@@ -67,6 +85,34 @@ function calculateScore(){
             inCorrectAnswers++
         }
     });
+    $.each($("input[name='question-2']:checked"), function(){
+        if($(this).val()===questionAnswers[2].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
+    $.each($("input[name='question-3']:checked"), function(){
+        if($(this).val()===questionAnswers[3].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
+    $.each($("input[name='question-4']:checked"), function(){
+        if($(this).val()===questionAnswers[4].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
+    $.each($("input[name='question-5']:checked"), function(){
+        if($(this).val()===questionAnswers[5].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
 }
 
 // define function that, once the time has elapsed, will 1) hide the timer, 2) hide the possible answers (so user can no longer select answers after time is up), and 3) show the user's overall results number of right/wrong responses and unanswered questions --> with # unanswered as a formula of total questions minus number correct and incorrect (so total right+wrong+unanswered equals the total number of questions)
@@ -90,7 +136,7 @@ function playAgain() {
     $("#timer").empty().show();
     $("#showPossibleAnswers").empty().show();
   
-    timer = 10
+    timer = 60
     correctAnswers = 0;
     inCorrectAnswers = 0;
     unAnswers = 0;
