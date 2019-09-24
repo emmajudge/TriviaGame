@@ -2,15 +2,15 @@
 // this code was copied from a class activity.. check week/number 
 var questionAnswers = [
     {
-        question: "who is MJ?",
-        answers: ["1. He is a footbal player", "2. He is a rock star", "3. He is the GOAT", "4. He is a pilot"],
-        rightAnswer: "3. He is the GOAT",
+        question: "1. Who is MJ?",
+        answers: ["He is a footbal player", "He is a rock star", "He is the GOAT", "He is a pilot"],
+        rightAnswer: "He is the GOAT",
         animate: "https://media3.giphy.com/media/pYvP6Bf0Uhtm0/200w.webp?cid=790b76115ce7298e785a396d7364905b&rid=200w.webp"
     },
     {
-        question: "who won the world series in 2016?",
-        answers: ["1. Blackhawks", "2. Cubs", "3. Bears", "4. White Soxs"],
-        rightAnswer: "2. Cubs",
+        question: "2. Who won the world series in 2016?",
+        answers: ["Blackhawks", "Cubs", "Bears", "White Soxs"],
+        rightAnswer: "Cubs",
         animate: "https://giphy.com/gifs/mlb-dance-cubs-vol-7HsmAvlq6lDlm"
     }
 
@@ -22,7 +22,7 @@ var inCorrectAnswers = 0;
 var unAnswers = 0;
 var index = 0;
 
-var timer = 10;
+var timer = 15;
 var intervalid;
 
 function showTrivia() {
@@ -30,36 +30,9 @@ function showTrivia() {
     for (index = 0; index < questionAnswers.length; index++) {
         $("#showPossibleAnswers").append(questionAnswers[index].question + "<br>");
         for (var i = 0; i < questionAnswers[index].answers.length; i++) {
-            var p = $("<p>")
-            p.attr("data-rightAnswer", questionAnswers[index].rightAnswer)
-            p.addClass("answer")
-            p.attr("data-possibleAnswer", questionAnswers[index].answers[i])
-            p.html(questionAnswers[index].answers[i] + "<br><br>")
-            $("#showPossibleAnswers").append(p)
+            $("#showPossibleAnswers").append("<input type='radio' name='question-"+index+"' value='"+questionAnswers[index].answers[i]+"'>"+questionAnswers[index].answers[i])
         }
     }
-
-    $(".answer").hover(function () {
-        $(this).css("background-color", "yellow");
-    }, function () {
-        $(this).css("background-color", "white");
-    });
-
-
-    $(".answer").on("click", function () {
-        console.log(this)
-
-        var getRightAnswer = $(this).attr("data-rightAnswer");
-        var getPossibleAnswer = $(this).attr("data-possibleAnswer");
-
-        if (getPossibleAnswer === getRightAnswer) {
-            correctAnswers++
-        }
-        else {
-            inCorrectAnswers++
-        }
-    })
-
 }
 
 showTrivia()
@@ -73,17 +46,28 @@ function countDown() {
     timer--;
     if (timer === 0) {
         clearInterval(intervalid);
+        calculateScore();
         displayResults();
     }
 
 }
 
-// when I added the reset button, it duplicated all of the possible answers on the 
-// show trivia screen and messed up the result counts.. do i need to define within
-// the displayResults function?
-
-// var resetButton=document.createElement("button");resetButton.innerHTML="Play Again!"
-// resetButton.addEventListener("click", playAgain());
+function calculateScore(){
+    $.each($("input[name='question-0']:checked"), function(){
+        if($(this).val()===questionAnswers[0].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
+    $.each($("input[name='question-1']:checked"), function(){
+        if($(this).val()===questionAnswers[1].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
+}
 
 // define function that, once the time has elapsed, will 1) hide the timer, 2) hide the possible answers (so user can no longer select answers after time is up), and 3) show the user's overall results number of right/wrong responses and unanswered questions --> with # unanswered as a formula of total questions minus number correct and incorrect (so total right+wrong+unanswered equals the total number of questions)
 function displayResults() {
@@ -98,7 +82,6 @@ function displayResults() {
     unAnswers = questionAnswers.length - correctAnswers - inCorrectAnswers
     $("#results").append("Unanswer:" + unAnswers + "<br>")
     $("#results").append("<button onclick='playAgain()'>play again</button>")
-    //$("button).on("click", playAgain())
 }
 
 function playAgain() {
