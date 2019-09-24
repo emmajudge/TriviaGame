@@ -85,6 +85,34 @@ function calculateScore(){
             inCorrectAnswers++
         }
     });
+    $.each($("input[name='question-2']:checked"), function(){
+        if($(this).val()===questionAnswers[2].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
+    $.each($("input[name='question-3']:checked"), function(){
+        if($(this).val()===questionAnswers[3].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
+    $.each($("input[name='question-4']:checked"), function(){
+        if($(this).val()===questionAnswers[4].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
+    $.each($("input[name='question-5']:checked"), function(){
+        if($(this).val()===questionAnswers[5].rightAnswer){
+           correctAnswers++; 
+        }else{
+            inCorrectAnswers++
+        }
+    });
 }
 
 // define function that, once the time has elapsed, will 1) hide the timer, 2) hide the possible answers (so user can no longer select answers after time is up), and 3) show the user's overall results number of right/wrong responses and unanswered questions --> with # unanswered as a formula of total questions minus number correct and incorrect (so total right+wrong+unanswered equals the total number of questions)
@@ -108,7 +136,7 @@ function playAgain() {
     $("#timer").empty().show();
     $("#showPossibleAnswers").empty().show();
   
-    timer = 10
+    timer = 60
     correctAnswers = 0;
     inCorrectAnswers = 0;
     unAnswers = 0;

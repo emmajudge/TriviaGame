@@ -1,5 +1,5 @@
-body {
-    background: url("../images/center-leaf.jpg");
+.jumbotron {
+    background-image: url("../images/games.jpg");
 }
 
 #showPossibleAnswers{
